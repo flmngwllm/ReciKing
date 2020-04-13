@@ -1,5 +1,6 @@
 // Recipe.js  const res = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
 import axios from 'axios'
+import {elem} from '../views/base'
 
 export default class Search{
     constructor(query){
@@ -11,7 +12,7 @@ export default class Search{
         try{
             const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${this.query}`)
             this.results = res.data.recipes
-            console.log(this.results)
+           //console.log(this.results)
         } catch (error){
             alert(error)
         }       
