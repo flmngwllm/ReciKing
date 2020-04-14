@@ -77,7 +77,11 @@ const controlRec = async () => {
         // Create new recipe object
         state.recipe = new Recipe(id)
 
-
+        // Highlight slected search
+        if(state.search){
+        searchView.highlightSelect(id)
+        }
+        
         try{
 
         // Get recipe data and parse ingredients
