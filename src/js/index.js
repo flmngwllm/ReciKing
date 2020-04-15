@@ -1,5 +1,6 @@
 import Search from './models/Search'
 import Recipe from './models/Recipe'
+import List from './models/List'
 import * as searchView from './views/searchView'
 import * as recipeView from './views/recipeView'
 import {elem, renderLoad, clearLoader} from './views/base'
@@ -81,7 +82,7 @@ const controlRec = async () => {
         if(state.search){
         searchView.highlightSelect(id)
         }
-        
+
         try{
 
         // Get recipe data and parse ingredients
@@ -104,3 +105,20 @@ const controlRec = async () => {
 // window.addEventListener('hashchange', controlRec)
 // window.addEventListener('load', controlRec)
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRec))
+
+
+// handles recipe button clicks
+elem.recipe.addEventListener('click', e => {
+    if(e.target.matches('.btn-decrease, .btn-decrease *')){
+        //Decrease button is clicked
+        if(state.recipe.servings > 1){
+        state.recipe.updateServings('dec')
+        recipeView.updateServingIng(state.recipe)
+        }
+    } else if (e.target.matches('.btn-increase, .btn-increase *')){
+        state.recipe.updateServings('inc')
+      recipeView.updateServingIng(state.recipe)
+    }
+})
+
+window.l = new List()
